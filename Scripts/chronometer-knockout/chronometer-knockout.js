@@ -1,34 +1,28 @@
 ﻿ko.bindingHandlers.chronometer = {
     init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
         var value = ko.unwrap(valueAccessor());
-        var options = prepOptions(value);
+        var options = prepOptions(allBindings);
 
         $(element).chronometer(value, options);
 
         document.addEventListener(element.id + "_updated", function (e) {
             var accessor = valueAccessor();
-            accessor.value(e.val);
+            accessor(e.val);
         });
     },
     update: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
         var value = valueAccessor();
         var valueUnwrapped = ko.unwrap(value);
-        var options = prepOptions(value);
+        var options = prepOptions(allBindings);
 
         $(element).chronometer(valueUnwrapped, options);
     }
 }
 
-function prepOptions(value) {
+function prepOptions(allBindings) {
     var options = {};
-    if (value.inputFormat != null) {
-        options.inputFormat = value.inputFormat;
-    }
-    if (value.outputFormat != null) {
-        options.outputFormat = value.outputFormat;
-    }
-    if (value.includeTime != null) {
-        options.includeTime = value.includeTime;
-    }
+    options.inputFormat = allBindings.get('chronometerInputFormat');
+    options.outputFormat = allBindings.get('chronometerOutputFormat');
+    options.includeTime = allBindings.get('chronometerIncludeTime') || false;
     return options;
 }

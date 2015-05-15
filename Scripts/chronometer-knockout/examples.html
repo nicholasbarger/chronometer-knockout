@@ -27,12 +27,12 @@
 
         <h3>Simple Date</h3>
         <p>Pick a date in the following format: 'YYYY-MM-DD'.  The end output should not have any time or timezone information.</p>
-        <input id="example1" type="text" data-bind="chronometer: { value: start }" class="chronometer" />
+        <input id="example1" type="text" data-bind="chronometer: start" class="chronometer" />
         <pre data-bind="text: start"></pre>
 
         <h3>Simple Datetime</h3>
         <p>Pick a date and time in the following format: 'YYYY-MM-DD hh:mm Z z' as well as a provided timezone. The timezone indicates the timezone for the entry and should default to the current local timezone.</p>
-        <input id="example2" type="text" data-bind="chronometer: { value: end, outputFormat: 'YYYY-MM-DD hh:mm Z z', includeTime: true, value: end }" class="chronometer" />
+        <input id="example2" type="text" data-bind="chronometer: end, chronometerOutputFormat: 'YYYY-MM-DD hh:mm Z z', chronometerIncludeTime: true" class="chronometer" />
         <pre data-bind="text: end"></pre>
     </section>
 
